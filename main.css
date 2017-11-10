@@ -53,11 +53,13 @@ nav ul li.logo{
 	color: #EDEDED;
 }
 .article-preview{
-	width: 1080px;
+	/* 宽度限制导致右边的图片无法float到最右 */
+	/* width: 1080px; */
 	min-height: 500px;
 }
 .article-preview > div{
-	float: left;
+	/* 此处的float会导致这些div都是float:left，这样会使得图片的float:right被覆盖 */
+	/* float: left; */
 }
 .Baymax{
 	padding: 50px 100px 10px 30px;
@@ -68,15 +70,19 @@ nav ul li.logo{
 }
 .belle{
 	float:right;
-	width: 40%;
+	/* 宽度能固定就固定，尽量少用百分比。百分比在不同分辨率的设备下显示效果区别很大 */
+	/* width: 40%; */
+	width: 120px;
 	height: 300px;
-	float: right;
 }
 footer{
-	background: #1DBFCD;
-	color: #fff;
+    background: #1DBFCD;
+    color: #fff;
 	clear: both;
-
+	/* 使用固定fixed属性，让footer固定在底部。宽度需要设置成100%让他自适应。bottom:0 就是固定在底部。如果是top:0就是固定在顶部.*/
+    position: fixed;
+    width: 100%;
+    bottom: 0;
 }
 ul{
 	margin: 0;
@@ -94,4 +100,10 @@ ul .share-group{
 }
 .copy{
 	padding-bottom: 30px;
+}
+
+.share-group{
+	/* 块元素要居中的话，就要固定块元素的宽度，然后使用margin: 0 auto自动调整左右的间距 */
+	width: 300px;
+	margin: 0 auto;
 }
